@@ -1,0 +1,15 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+
+{% if 최근질문들 %}
+<ul>
+    {% for 최근질문 in 최근질문들 %}
+    <li><a href="{% url 'polls:투표하기' 최근질문.id %}">{{ 최근질문.질문내용 }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<h2>안녕하세요. 새 게시판입니다. 아직 투표가 없습니다. </h2>
+{% endif %}
+
+{% endblock content %}

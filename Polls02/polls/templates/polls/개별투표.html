@@ -1,0 +1,19 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+<h1>{{ 선택.질문내용 }}</h1>
+
+{% if 에러발생 %}
+    <h3><strong>{{에러발생}}</strong></h3>
+{% endif %}
+
+<form action= "{% url 'polls:집계' 선택.id %}" method = "POST">
+{% csrf_token %}
+{% for 항목 in 선택.선택틀_set.all %}
+    <input type="radio" name ="항목" id = "항목{{ forloop.counter }}" value ="{{항목.id}}" >
+    <label for="항목{{ forloop.counter }}">{{항목.선택지}}</label><br>
+{% endfor %}
+<br><input type="submit" value="투표" />
+</form>
+
+{% endblock content %}

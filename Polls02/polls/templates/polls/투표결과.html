@@ -1,0 +1,14 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+<h1> 투표결과 : {{선택.질문내용}}</h1>
+<ul>
+  {% for 항목 in 선택.선택틀_set.all %}
+  <li>{{항목}} -- {{항목.투표수}} 표 </li>
+  {% endfor %}
+</ul>
+<br>
+<h3><a href="{% url 'polls:투표하기' 선택.id %}">투표하기</a></h3>
+<br>
+<h3><a href="{% url 'polls:첫페이지' %}">질문 보기</a></h3>
+{% endblock content %}
